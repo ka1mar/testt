@@ -1,0 +1,25 @@
+stages:
+  upload_raw_data:
+    cmd: python src/upload_raw_data.py
+    deps:
+      - src/upload_raw_data.py
+    params:
+      - authentication.yaml:
+        - login
+        - password
+    always_changed:
+      true
+    outs:
+      - data/raw:
+          persist: true
+
+  build_images:
+    cmd: python src/build_images.py
+    deps:
+      - src/build_images.py
+      - data/raw
+    params:
+      - build_images.raw_aptina
+      - build_images.raw_flash
+    outs:
+      - data/png
