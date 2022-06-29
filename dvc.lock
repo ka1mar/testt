@@ -1,0 +1,40 @@
+schema: '2.0'
+stages:
+  upload_raw_data:
+    cmd: python src/upload_raw_data.py
+    deps:
+    - path: src/upload_raw_data.py
+      md5: 0f232bb9aa804facd7d4dbbcb632ac31
+      size: 637
+    params:
+      authentication.yaml:
+        login: kalmar
+        password: Markiza26262
+    outs:
+    - path: data/raw
+      md5: 8531c950f230792df597e7b82a4df88d.dir
+      size: 129223680
+      nfiles: 2
+  build_images:
+    cmd: python src/build_images.py
+    deps:
+    - path: data/raw
+      md5: 8531c950f230792df597e7b82a4df88d.dir
+      size: 129223680
+      nfiles: 2
+    - path: src/build_images.py
+      md5: 293cbac0b35f3774ac295e93437211d3
+      size: 996
+    params:
+      params.yaml:
+        build_images.raw_aptina:
+          width: 752
+          height: 480
+        build_images.raw_flash:
+          width: 752
+          height: 480
+    outs:
+    - path: data/png
+      md5: 26e50afb482496894103633a7cd9edfe.dir
+      size: 38445416
+      nfiles: 358

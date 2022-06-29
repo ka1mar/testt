@@ -1,0 +1,7 @@
+build_images:
+  raw_aptina:
+    width: 752
+    height: 480
+  raw_flash:
+    width: 752
+    height: 480
